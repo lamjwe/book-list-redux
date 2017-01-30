@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 // We are going to promoteone of the coponents to a container. 
 // Container is a react coponent that has direct connection to the state managed by redux.
@@ -17,7 +18,7 @@ import React, { Component } from 'react';
 // The only thing that the app component is here for is say render a book list to the page and render book detail to the page. 
 // Therefore, book list and book detail should both be containers.
 
-export default class BookList extends Component {
+class BookList extends Component {
     renderList() {
         return this.props.books.map((book) => {
             return (
@@ -33,3 +34,25 @@ export default class BookList extends Component {
         )
     }    
 }
+
+// links redux to the container. 
+function mapStateToProps(state) {
+    // Takes in the application state, and whatever is returned will show up as props inside of BookList
+    return {
+        books: state.books
+    }
+}
+
+// deleted the export default from above whenever we make a cotainer file. 
+// Don't want to export the book list plain component, we want to export the container. 
+export default connect(mapStateToProps)(BookList);
+
+// connect function takes a function and a component and produces a container. 
+// The container is a component that is aware of the state that's contained by redux. 
+// The mapStateToProps function is especially key here. The first argument is the state and it 
+// returns an object. Whatever the object is returned, will be available to our component as this.props.
+
+// 2 Key points: 
+//  1. Whenever the application state changes, the component, our container booklist, will automatically rerender. 
+//  2. By using 'connect' to create a container, whenever the application state changes, the object in the 
+//      state function will be assigned as props to the component. 
