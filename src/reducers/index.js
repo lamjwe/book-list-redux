@@ -2,6 +2,8 @@ import { combineReducers } from 'redux';
 import BooksReducer from './reducer_books';
 import ActiveBook from './reducer_active_book';
 
+// Ties all reducers together
+// Assign one reducer to a key.
 const rootReducer = combineReducers({
   books: BooksReducer,
   activeBook : ActiveBook

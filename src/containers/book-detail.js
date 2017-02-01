@@ -19,10 +19,6 @@ class BookDetail extends Component {
     }
 }
 
-// function mapDispatchToProps(dispatch) {
-     
-// }
-
 // links redux to the container. 
 function mapStateToProps(state) {
     return {
